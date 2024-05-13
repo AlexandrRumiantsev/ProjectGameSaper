@@ -27,34 +27,50 @@ const Record = {
 
 const MainField = {
     render: function(gameLevel){
+        console.log('render')
+        // Вынесем в  отдельную переменную получение блока main
+        const main = document.getElementById('main');
 
-        // Проверяем mainBlock на существование
-
-        // ДЗ Оптимизировать данный метод
-
-        if (document.getElementById('main')) {
-            //  Предварительно очистить 
-            document.getElementById('main').innerHTML = `
-                <div>
-                    Главное поле
-                    Уровень игры: ${gameLevel}
-                </div>
-            `;
-
+        if (main) {
+            // Предварительно очистить 
+            // Используем поле повторно
+            this.create(main, () => {
+                this.setFieldClick();
+            })
         } else {
-            const mainBlock = document.createElement('div')
-
-            mainBlock.innerHTML = `
-                <div>
-                    Главное поле
-                    Уровень игры: ${gameLevel}
-                </div>
-            `;
-
-            mainBlock.setAttribute('id', 'main')
-
-            root.appendChild(mainBlock);
+            // Создаем поле в первый раз
+            const mainBlock = document.createElement('div');
+           
+            mainBlock.setAttribute('id', 'main');
+            // Стрелочная функция
+            this.create(mainBlock, () => {
+                console.log(this)
+                this.setFieldClick();
+                root.appendChild(mainBlock);
+            });
+    
         }
+
+        
+    },
+    setFieldClick: function() {
+        // Ищем все поля field
+        document.querySelectorAll('field')
+    },
+    create: function(block, callback){
+        // Обнуляем блок с полями
+        block.innerHTML = ''
+        // Отрисовываем главное поле
+        for(let i = 0; i < 25; i++) {
+            console.log('Цикл', block)
+            let isBomb = Math.floor(Math.random() * 2);
+
+            const field = `
+                <div class='field' data-bomb='${isBomb}'>Поле</div>
+            `
+            block.innerHTML += field
+        }
+        callback();
     }
 }
 
