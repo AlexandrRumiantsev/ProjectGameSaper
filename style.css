@@ -1,0 +1,23 @@
+.field{
+    width: 150px;
+    height: 150px;
+    background: #66cccc;
+    color: white;
+    outline: 3px solid white;
+    background-image: url(http://inordic.projects.alexweber.ru/saper/img/gift.png);
+    background-size: cover;
+}
+
+#main {
+    width: 750px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.bomb {
+    background-image: url(http://inordic.projects.alexweber.ru/saper/img/bomb.png);
+    background-size: cover;
+}
+.coin {
+    background-image: url(http://inordic.projects.alexweber.ru/saper/img/moneta.png);
+    background-size: cover;
+}
